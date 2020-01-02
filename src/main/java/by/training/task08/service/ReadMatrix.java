@@ -1,47 +1,42 @@
 package by.training.task08.service;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReadMatrix {
 
     public int[][] readMatrix() {
 
-        File file = new File("D:\\study\\task08\\matrix.txt");
-        BufferedReader br = null;
+        List<String> list = new ArrayList<>();
 
-        try {
-            br = new BufferedReader(new FileReader(file));
+        Path path = Paths.get("D:\\study\\task08\\matrix.txt");
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        try (Stream<String> lineStream = Files.lines(path)) {
 
-        List<String> list = new ArrayList();
+            list = lineStream.collect(Collectors.toList());
 
-        try {
-            while (br.ready()) {
-
-                list.add(br.readLine());
-            }
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }
 
-        int height = list.get(0).split(" ").length;
-        int width = list.size();
+        int width = list.get(0).split(" ").length;
+        int height = list.size();
 
-        int[][] matrix = new int[width][height];
+        int[][] matrix = new int[height][width];
 
 
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < height; i++) {
 
-            for (int j = 0; j < height; j++) {
+            for (int j = 0; j < width; j++) {
                 String[] strings = list.get(i).split(" ");
                 matrix[i][j] = Integer.parseInt(strings[j]);
             }
-
         }
         return matrix;
     }

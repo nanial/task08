@@ -1,4 +1,4 @@
-package by.training.task08.service;
+package by.training.task08.view;
 
 
 public interface PrintMatrix {
