@@ -1,13 +1,23 @@
 package by.training.task08.validator;
 
+import by.training.task08.exception.MatrixException;
+
 public class MatrixValidator {
 
-    /*private boolean checkRange(int i, int j) {
+    public boolean checkRange(int [][] matrixA, int [][] matrixB) throws MatrixException {
 
-        if ( i >= 0 && i < a.length && j >= 0 && j < a[0].length ) {
-            return true;
-        } else {
-            return false;
+        if ( matrixA.length > 0 && matrixB.length > 0 ) {
+
+            if (matrixA.length == matrixB.length) {
+
+                return true;
+            }
+            else {
+                throw new MatrixException("Rows and columns aren't commutative");
+            }
         }
-    }*/
+        else {
+            throw new MatrixException("Matrix is/are empty");
+        }
+    }
 }

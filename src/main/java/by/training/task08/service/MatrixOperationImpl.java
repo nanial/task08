@@ -5,7 +5,8 @@ import by.training.task08.bean.Matrix;
 public class MatrixOperationImpl implements MatrixOperation {
     @Override
     public int[][] multiply(int[][] p, int[][] q) {
-        int n = 0, l = 0;
+
+
         /*
         Matrix r = new Matrix(n, l);
 

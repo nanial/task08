@@ -1,15 +1,17 @@
 package by.training.task08.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Matrix implements Serializable {
 
     private int row;
     private int column;
+    private int[][] matrix;
 
     public Matrix(int row, int column) {
-        this.row = row;
-        this.column = column;
+
+        this.matrix = new int[row][column];
     }
 
     public int getRow() {
@@ -31,18 +33,20 @@ public class Matrix implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Matrix)) return false;
 
-        Matrix matrix = (Matrix) o;
+        Matrix matrix1 = (Matrix) o;
 
-        if (row != matrix.row) return false;
-        return column == matrix.column;
+        if (getRow() != matrix1.getRow()) return false;
+        if (getColumn() != matrix1.getColumn()) return false;
+        return Arrays.deepEquals(matrix, matrix1.matrix);
     }
 
     @Override
     public int hashCode() {
-        int result = row;
-        result = 31 * result + column;
+        int result = getRow();
+        result = 31 * result + getColumn();
+        result = 31 * result + Arrays.deepHashCode(matrix);
         return result;
     }
 
@@ -51,6 +55,7 @@ public class Matrix implements Serializable {
         return "Matrix{" +
                 "row=" + row +
                 ", column=" + column +
+                ", matrix=" + Arrays.toString(matrix) +
                 '}';
     }
 }
