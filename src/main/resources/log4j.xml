@@ -18,7 +18,7 @@
         <appender-ref ref="fileAppender"/>
     </category>
 
-    <category name="edu.javacourse.studentorder.dao" additivity="false">
+    <category name="by.training.task08" additivity="false">
         <!--all, trace, debug, info, warn, error, fatal-->
         <priority value="all"/>
         <appender-ref ref="fileAppender"/>
